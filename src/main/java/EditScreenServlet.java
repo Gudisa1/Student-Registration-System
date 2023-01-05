@@ -13,13 +13,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/editurl")
 public class EditScreenServlet extends HttpServlet {
-private final static String query =" select Id,name,email,mobile,dob,department,gender from user where id=?";
+private final static String query =" select name,email,mobile,dob,department,gender from user where id=?";
 
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //	Get Print write
-PrintWriter pw=res.getWriter();
+         PrintWriter pw=res.getWriter();
 		
 		//Set content type
 		res.setContentType("text/html");
@@ -58,32 +58,32 @@ PrintWriter pw=res.getWriter();
                 rs.next();
         	 
         	pw.println("<div style='margin:auto;width:500px;margin-top:100px;'>");
-        	pw.print("<form action='edit?id="+"' method='post'>");
+        	pw.print("<form action='edit?id="+id+"' method='post'>");
         	
        pw.println("<table class ='table table-hover table-striped'>");
        pw.println("<tr>");
        pw.println("<td>Name</td>");
-       pw.println("<td><input type='text' name='name' value='"+rs.getString(2)+"'</td>");
+       pw.println("<td><input type='text' name='name' value='"+rs.getString(1)+"'</td>");
        pw.println("</tr>");
        pw.println("<tr>");
        pw.println("<td>Email</td>");
-       pw.println("<td><input type='email' name='email' value='"+rs.getString(3)+"'</td>");
+       pw.println("<td><input type='email' name='email' value='"+rs.getString(2)+"'</td>");
        pw.println("</tr>");
        pw.println("<tr>");
        pw.println("<td>Phone No</td>");
-       pw.println("<td><input type='text' name='mobile' value='"+rs.getString(4)+"'</td>");
+       pw.println("<td><input type='text' name='mobile' value='"+rs.getString(3)+"'</td>");
        pw.println("</tr>");
        pw.println("<tr>");
        pw.println("<td>DOB</td>");
-       pw.println("<td><input type='date' name='dob' value='"+rs.getString(5)+"'</td>");
+       pw.println("<td><input type='date' name='dob' value='"+rs.getString(4)+"'</td>");
        pw.println("</tr>");
        pw.println("<tr>");
        pw.println("<td>Department</td>");
-       pw.println("<td><input type='text' name='department' value='"+rs.getString(6)+"'</td>");
+       pw.println("<td><input type='text' name='department' value='"+rs.getString(5)+"'</td>");
        pw.println("</tr>");
        pw.println("<tr>");
        pw.println("<td>Gender</td>");
-       pw.println("<td><input type='text' name='gender' value='"+rs.getString(7)+"'</td>");
+       pw.println("<td><input type='text' name='gender' value='"+rs.getString(6)+"'</td>");
        pw.println("</tr>");
        pw.println("<tr>");
        pw.println("<td><button type='submit' class='btn btn-outline-success'>Edit</button></td>");
@@ -107,6 +107,15 @@ PrintWriter pw=res.getWriter();
 //        Close the Stream
         pw.close();
         
+        
+        
+	}
+        
+	@Override
+	protected void doPost(HttpServletRequest req ,HttpServletResponse res) throws ServletException, IOException{
+		
+		
+		doGet(req,res);
+	}
 		
 	}
-}

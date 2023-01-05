@@ -17,7 +17,7 @@ private final static String query ="update user set name=?,email=?,mobile=?,dob=
 
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //	Get Print write
 PrintWriter pw=res.getWriter();
 		
@@ -91,4 +91,8 @@ PrintWriter pw=res.getWriter();
         
 		
 	}
+	 @Override
+	    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	        doGet(req,res);
+	    }
 }
